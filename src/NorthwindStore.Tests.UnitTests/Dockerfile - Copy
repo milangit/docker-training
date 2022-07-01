@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 
 WORKDIR /src
 COPY ["packages/", "packages/"]
@@ -11,4 +11,5 @@ RUN dotnet restore "NorthwindStore.Tests.UnitTests/NorthwindStore.Tests.UnitTest
 COPY . .
 WORKDIR "/src/NorthwindStore.Tests.UnitTests"
 RUN dotnet build "NorthwindStore.Tests.UnitTests.csproj"
+
 ENTRYPOINT ["dotnet", "test", "NorthwindStore.Tests.UnitTests.csproj", "--no-build"]
